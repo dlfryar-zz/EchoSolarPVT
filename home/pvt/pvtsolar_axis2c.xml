@@ -1,0 +1,37 @@
+<!-- This file is a custom PVT Solar configuration based on the axis2.xml configuration file from the standard apache axis2c distribution. -->
+<axisconfig name="Axis2/C">
+    <parameter name="enableREST" locked="false">true</parameter>
+    <transportReceiver name="http" class="axis2_http_receiver">
+        <parameter name="port" locked="false">6060</parameter>
+        <parameter name="exposeHeaders" locked="true">false</parameter>
+    </transportReceiver>
+     <transportReceiver name="https" class="axis2_http_receiver">
+        <parameter name="port" locked="false">6060</parameter>
+        <parameter name="exposeHeaders" locked="true">false</parameter>
+    </transportReceiver>
+    <transportSender name="http" class="axis2_http_sender">
+        <parameter name="PROTOCOL" locked="false">HTTP/1.1</parameter>
+        <parameter name="xml-declaration" insert="false"/>
+    </transportSender>
+    <transportSender name="https" class="axis2_http_sender">
+        <parameter name="PROTOCOL" locked="false">HTTP/1.1</parameter>
+        <parameter name="xml-declaration" insert="false"/>
+    </transportSender>
+    <parameter name="SERVER_CERT">/home/pvt/tomcat.pem</parameter>
+    <module ref="addressing"/>
+    <phaseOrder type="inflow">
+         <phase name="Transport"/>
+        <phase name="PreDispatch"/>
+        <phase name="Dispatch"/>
+        <phase name="PostDispatch"/>
+    </phaseOrder>
+    <phaseOrder type="outflow">
+         <phase name="MessageOut"/>
+    </phaseOrder>
+    <phaseOrder type="INfaultflow">
+    </phaseOrder>
+    <phaseOrder type="Outfaultflow">
+        <phase name="MessageOut"/>
+    </phaseOrder>
+</axisconfig>
+
